@@ -79,3 +79,6 @@ while True:
     mars.circle(120,2)
     jupiter.circle(180,1.5)
     satan.circle(240,1)
+	
+	
+
