@@ -1,8 +1,19 @@
-#实现按汇率计算的函数,可以通过输入的原货币类型、新货币类型、原货币数额，计算新货币的数额
-#(合法性测试：可以判断输入货币类型是否是列表中的类型，如果不是会报错并要求重新输入，直到输入有效的类型)
+#!/usr/bin/env python3
+
+'''currency.py:实现按汇率计算的函数,可以通过输入的原货币类型、新货币类型、原货币数额，计算新货币的数额
+(合法性测试：可以判断输入货币类型是否是列表中的类型，如果不是会报错并要求重新输入，直到输入有效的类型)
+
+__author__ = "Zhujiajie"
+__pkuid__  = "1800011794"
+__email__  = "zhujiajie@pku.edu.cn"
+'''
+
+import json
+from urllib.request import urlopen
+
 def exchange():
-    import json
-    from urllib.request import urlopen
+    '''实现汇率计算的函数
+    '''
     currency_from=input('Please enter source:  ')
     currency_to=input('Please enter target:  ')
     amount_from=input('Please enter amount:  ')
@@ -32,11 +43,11 @@ def exchange():
     pdict=json.loads(jstr)
     kstr=pdict.get('to')
     print('You will get',kstr,'.')
-#测试函数
+    
+#以下为测试函数
 #通过几组输入，比较输出与理论值是否相同，以初步检查函数的正确性
+
 def get_exchange(currency_from,currency_to,amount_from):
-    import json
-    from urllib.request import urlopen
     doc = urlopen('http://cs1110.cs.cornell.edu/2016fa/a1server.php?from='+currency_from+'&to='+currency_to+'&amt='+amount_from)
     docstr = doc.read()
     doc.close()
@@ -60,11 +71,18 @@ def test_JPY_EUR_200():
     assert(a=='1.5542831129543 Euros')
     
 def testAll():
+    '''检查函数正确性的测试函数
+    '''
     test_USD_AUD_32()
     test_USD_AUD_64()
     test_USD_EUR_50()
     test_JPY_EUR_200()
     print("All tests passed.")
-    
-testAll()
 
+def main():
+    """main module
+    """
+    exchange()
+    testAll()
+if __name__ == '__main__':
+    main()
