@@ -41,10 +41,10 @@ def wcount(urls,topn=10):
     list_1.sort(key=lambda x:x[1],reverse=True)
     if topn<=len(list_1):
         for tuples in list_1[0:topn]:
-            print(tuples[0]+'  '+str(tuples[1]))
+            print('{0:<15}{1}'.format(tuples[0],str(tuples[1])))
     else:
         for tuples in list_1:
-            print(tuples[0]+'  '+str(tuples[1]))
+            print('{0:<15}{1}'.format(tuples[0],str(tuples[1])))
     infile.close()
 
 if __name__ == '__main__':
